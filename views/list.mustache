@@ -1,0 +1,49 @@
+<h2>JUST DO IT LIST</h2>
+
+<!--link to add new todo items-->
+<p><a href="/add">What's next on your todo list</a></p>
+
+<h3>Pending</h3>
+
+<ul>
+  {{ #mylist }}
+    <li>
+      <p>{{ todo }}</p>
+      <p>{{ priority }}</p>
+      <p>{{ date }}</p>
+
+      {{ #start }}
+        <form method="post" action="/startThis/{{ id }}">
+          <input type="submit" value="Are you done">
+        </form>
+
+        <form method="post" action="/delete/{{ id }}">
+          <input type="submit" value="delete">
+        </form>
+
+        <form method="post" action "/edit{{ id }}">
+        <input type="text" name="changes">
+        <input type="submit" value="Edit">
+        </form>
+
+      {{ /start }}
+
+      {{ ^start }}
+        <form method="post" action="/startThat/{{ id }}">
+          <input type="submit" value="Finished">
+        </form>
+
+        <form method="post" action="/delete/{{ id }}">
+          <input type="submit" value="delete">
+        </form>
+
+        <form method="post" action "/edit{{ id }}">
+        <input type="text" name="changes">
+        <input type="submit" value="Edit">
+        </form>
+
+      {{ /start }}
+
+    </li>
+  {{ /mylist }}
+</ul>
